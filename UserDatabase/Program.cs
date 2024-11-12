@@ -16,7 +16,7 @@ namespace UserDatabase
 
             while (!running)
             {
-                Console.WriteLine("Pasirinkite meniu veiksma: 1. RegisterUser\n2. GetAllUsers\n3. UpdateUser\n4. RemoveUser\n5. UpdatePassword\n6. ActivateUser\n7. DeactivateUser\n8. ListUsersByRole");
+                Console.WriteLine("Pasirinkite meniu veiksma:\n1. RegisterUser\n2. GetAllUsers\n3. UpdateUser\n4. RemoveUser\n5. UpdatePassword\n6. ActivateUser\n7. DeactivateUser\n8. ListUsersByRole");
                 switch(int.Parse(Console.ReadLine()))
                 {
                     case 1:

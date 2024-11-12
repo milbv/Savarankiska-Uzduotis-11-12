@@ -12,5 +12,9 @@ namespace UserDatabase.Core.Models
         public Admin()
         {
         }
+        public override string ToString()
+        {
+            return $"{UserId} | {Username} | {Password} | {IsActive} | {Role}";
+        }
     }
 }

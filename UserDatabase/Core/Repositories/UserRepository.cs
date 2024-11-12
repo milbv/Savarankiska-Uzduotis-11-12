@@ -23,7 +23,7 @@ namespace UserDatabase.Core.Repositories
             using(var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                connection.Execute("INSERT INTO Users (Username, Password, IsActive, Role) VALUES (@Username, @Password, 1, @Role", user);
+                connection.Execute("INSERT INTO Users (Username, Password, IsActive, Role) VALUES (@Username, @Password, 1, @Role)", user);
             }
         }
 
@@ -32,7 +32,7 @@ namespace UserDatabase.Core.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                connection.Execute("UPDATE Users Password = @newPassword WHERE Id = @id", new { id, newPassword });
+                connection.Execute("UPDATE Users SET Password = @newPassword WHERE UserId = @id", new { id, newPassword });
             }
         }
 
@@ -41,7 +41,7 @@ namespace UserDatabase.Core.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                connection.Execute("DELETE FROM Users WHERE Id = @id", new { id });
+                connection.Execute("DELETE FROM Users WHERE UserId = @id", new { id });
             }
         }
 
@@ -73,7 +73,7 @@ namespace UserDatabase.Core.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                result = connection.QueryFirst<User>("SELECT * FROM Users WHERE Id = @id", new { userId = id });
+                result = connection.QueryFirst<User>("SELECT * FROM Users WHERE UserId = @id", new {id});
             }
             return result;
         }
@@ -85,10 +85,10 @@ namespace UserDatabase.Core.Repositories
                 connection.Open();
                 if(isActive)
                 {
-                    connection.Execute("REPLACE Users IsActive = 1 WHERE Id = @id", new { id });
+                    connection.Execute("UPDATE Users SET IsActive = 1 WHERE UserId = @id", new { id });
                 } else
                 {
-                    connection.Execute("REPLACE Users IsActive = 0 WHERE Id = @id", new { id });
+                    connection.Execute("UPDATE Users SET IsActive = 0 WHERE UserId = @id", new { id });
                 }
                 
             }
@@ -99,7 +99,7 @@ namespace UserDatabase.Core.Repositories
             using (var connection = new SqlConnection(_connectionString))
             {
                 connection.Open();
-                connection.Execute("UPDATE User(Username,Password,IsActive,Role) VALUES (@Username,@Password,@IsActive,@Role) WHERE Id = id", user);
+                connection.Execute("UPDATE User(Username,Password,IsActive,Role) VALUES (@Username,@Password,@IsActive,@Role) WHERE UserId = id", user);
             }
         }
     }

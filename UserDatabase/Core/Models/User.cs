@@ -17,5 +17,9 @@ namespace UserDatabase.Core.Models
         {
 
         }
+        public override string ToString()
+        {
+            return $"{UserId} | {Username} | {Password} | {IsActive}";
+        }
     }
 }
